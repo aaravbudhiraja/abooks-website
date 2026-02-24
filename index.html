@@ -1,165 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABooks | 10-Minute Academic Delivery</title>
-    <!-- Tailwind CSS for modern responsive design -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Custom Production Styles -->
+    <title>ABooks - 10 Minute Delivery</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-slate-50 text-slate-900 antialiased">
+<body>
 
-    <!-- OVERLAY (For when cart is open) -->
-    <div id="cart-overlay" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden transition-opacity duration-300"></div>
+<header>
+    <h1>📚 ABooks</h1>
+    <p>Books Delivered in 10 Minutes</p>
+    <div class="header-buttons">
+        <button onclick="viewCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
+    </div>
+</header>
 
-    <!-- NAVIGATION -->
-    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 py-4 px-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2 cursor-pointer" onclick="window.location.reload()">
-                <div class="bg-yellow-400 p-2 rounded-xl shadow-sm">
-                    <i data-lucide="book-marked" class="text-blue-900 w-6 h-6"></i>
-                </div>
-                <span class="text-2xl font-black text-blue-900 tracking-tighter uppercase">ABooks</span>
-            </div>
-            
-            <div class="flex items-center gap-6">
-                <button onclick="toggleCart(true)" class="group relative bg-blue-900 text-white px-6 py-2.5 rounded-2xl flex items-center gap-3 shadow-lg hover:shadow-blue-200 transition-all">
-                    <i data-lucide="shopping-basket" class="w-5 h-5"></i>
-                    <span class="font-bold">Cart</span>
-                    <span id="cart-count" class="bg-yellow-400 text-blue-900 text-xs font-black px-2 py-0.5 rounded-full ring-2 ring-white">0</span>
-                </button>
-            </div>
+<section class="hero">
+    <h2>From Nursery to Class XII</h2>
+    <p>Instant academic essentials delivered to your doorstep.</p>
+</section>
+
+<section class="products">
+    <h2>Featured Books</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Class 10 Maths</h3>
+            <p>₹399</p>
+            <button onclick="addToCart('Class 10 Maths - ₹399')">Add to Cart</button>
         </div>
-    </nav>
 
-    <!-- MAIN CONTENT -->
-    <main class="pt-28 pb-20 px-6 max-w-7xl mx-auto">
-        
-        <!-- HERO SECTION -->
-        <section class="relative bg-blue-900 rounded-[2.5rem] p-10 md:p-20 text-white overflow-hidden mb-16 shadow-2xl">
-            <div class="relative z-10 max-w-2xl">
-                <span class="bg-blue-800 text-blue-200 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6 inline-block">Flash Delivery Active</span>
-                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-[1.1]">
-                    Academic Books <br><span class="text-yellow-400">in 10 Mins.</span>
-                </h1>
-                <p class="text-blue-100 text-lg mb-10 leading-relaxed">
-                    The quickest way to get NCERT, Reference Books, and Stationery. 
-                    Serving your neighborhood with lighting fast logistics.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <button class="bg-yellow-400 text-blue-900 px-10 py-4 rounded-2xl font-black text-lg shadow-xl hover:bg-white transition-all transform hover:-translate-y-1">
-                        Shop Now
-                    </button>
-                    <div class="flex items-center gap-3 px-6 py-4">
-                        <div class="flex -space-x-3">
-                            <div class="w-10 h-10 rounded-full border-2 border-blue-900 bg-slate-300"></div>
-                            <div class="w-10 h-10 rounded-full border-2 border-blue-900 bg-slate-400"></div>
-                            <div class="w-10 h-10 rounded-full border-2 border-blue-900 bg-slate-500"></div>
-                        </div>
-                        <span class="text-sm font-medium text-blue-200">5k+ Students Ordering</span>
-                    </div>
-                </div>
-            </div>
-            <!-- Decorative Elements -->
-            <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-800/50 to-transparent pointer-events-none"></div>
-        </section>
+        <div class="card">
+            <h3>Class 12 Economics</h3>
+            <p>₹450</p>
+            <button onclick="addToCart('Class 12 Economics - ₹450')">Add to Cart</button>
+        </div>
 
-        <!-- CATEGORIES -->
-        <section class="mb-20">
-            <h2 class="text-3xl font-black mb-10 flex items-center gap-3">
-                Shop by Class <div class="h-1 w-20 bg-yellow-400 rounded-full"></div>
-            </h2>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="cat-card bg-orange-50 border-orange-100 hover:bg-orange-500 group">
-                    <i data-lucide="baby" class="text-orange-500 group-hover:text-white w-10 h-10 mb-4 transition-colors"></i>
-                    <h3 class="font-black group-hover:text-white transition-colors">Primary (1-5)</h3>
-                </div>
-                <div class="cat-card bg-blue-50 border-blue-100 hover:bg-blue-500 group">
-                    <i data-lucide="school" class="text-blue-500 group-hover:text-white w-10 h-10 mb-4 transition-colors"></i>
-                    <h3 class="font-black group-hover:text-white transition-colors">Middle (6-8)</h3>
-                </div>
-                <div class="cat-card bg-purple-50 border-purple-100 hover:bg-purple-500 group">
-                    <i data-lucide="graduation-cap" class="text-purple-500 group-hover:text-white w-10 h-10 mb-4 transition-colors"></i>
-                    <h3 class="font-black group-hover:text-white transition-colors">Senior (9-12)</h3>
-                </div>
-                <div class="cat-card bg-emerald-50 border-emerald-100 hover:bg-emerald-500 group">
-                    <i data-lucide="pen-tool" class="text-emerald-500 group-hover:text-white w-10 h-10 mb-4 transition-colors"></i>
-                    <h3 class="font-black group-hover:text-white transition-colors">Stationery</h3>
-                </div>
-            </div>
-        </section>
+        <div class="card">
+            <h3>Class 8 Science</h3>
+            <p>₹320</p>
+            <button onclick="addToCart('Class 8 Science - ₹320')">Add to Cart</button>
+        </div>
 
-        <!-- PRODUCT LISTING -->
-        <section>
-            <div class="flex justify-between items-end mb-10">
-                <div>
-                    <h2 class="text-3xl font-black mb-2">Popular Essentials</h2>
-                    <p class="text-slate-500">Based on your school curriculum</p>
-                </div>
-                <button class="text-blue-600 font-bold hover:gap-3 transition-all flex items-center gap-2">
-                    View All <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </button>
-            </div>
-            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Products dynamically generated by JS -->
-            </div>
-        </section>
-    </main>
-
-    <!-- SHOPPING CART SIDEBAR -->
-    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full md:w-[450px] bg-white shadow-[-20px_0_50px_rgba(0,0,0,0.1)] z-50 translate-x-full transition-transform duration-500 ease-out">
-        <div class="flex flex-col h-full">
-            <div class="p-8 border-b border-slate-100 flex justify-between items-center">
-                <div>
-                    <h2 class="text-2xl font-black text-blue-900">Your Bag</h2>
-                    <p id="cart-status" class="text-sm text-slate-400 font-medium">0 items selected</p>
-                </div>
-                <button onclick="toggleCart(false)" class="p-3 bg-slate-50 rounded-2xl hover:bg-slate-100 transition-colors">
-                    <i data-lucide="x" class="text-slate-500"></i>
-                </button>
-            </div>
-
-            <!-- Cart Items -->
-            <div id="cart-items" class="flex-1 overflow-y-auto p-8 space-y-6">
-                <!-- Empty State -->
-                <div class="flex flex-col items-center justify-center h-full text-center space-y-4">
-                    <div class="bg-slate-50 p-6 rounded-full text-slate-300">
-                        <i data-lucide="shopping-cart" class="w-12 h-12"></i>
-                    </div>
-                    <p class="font-bold text-slate-400">Your bag is empty.<br>Start adding books!</p>
-                </div>
-            </div>
-
-            <!-- Cart Footer -->
-            <div class="p-8 border-t border-slate-100 bg-slate-50/50">
-                <div class="space-y-3 mb-8">
-                    <div class="flex justify-between text-slate-500 font-medium">
-                        <span>Subtotal</span>
-                        <span id="subtotal">₹0.00</span>
-                    </div>
-                    <div class="flex justify-between text-slate-500 font-medium">
-                        <span>Delivery Fee</span>
-                        <span class="text-emerald-500 font-bold">FREE</span>
-                    </div>
-                    <div class="flex justify-between text-blue-900 text-2xl font-black pt-3 border-t border-slate-200">
-                        <span>Total</span>
-                        <span id="total-price">₹0.00</span>
-                    </div>
-                </div>
-                <button class="w-full bg-blue-900 text-white py-5 rounded-[2rem] font-black text-lg shadow-xl hover:bg-blue-800 transition-all active:scale-[0.98]">
-                    Checkout Now
-                </button>
-                <div class="mt-6 flex items-center justify-center gap-2 text-slate-400 text-xs font-bold uppercase tracking-widest">
-                    <i data-lucide="shield-check" class="w-4 h-4"></i> Secure 256-bit Payment
-                </div>
-            </div>
+        <div class="card">
+            <h3>Stationery Kit</h3>
+            <p>₹199</p>
+            <button onclick="addToCart('Stationery Kit - ₹199')">Add to Cart</button>
         </div>
     </div>
+</section>
 
-    <script src="script.js"></script>
+<section class="why">
+    <h2>Why ABooks?</h2>
+    <ul>
+        <li>⚡ 10 Minute Delivery</li>
+        <li>📦 100% Genuine Books</li>
+        <li>💰 Affordable Pricing</li>
+        <li>🚚 Cash on Delivery</li>
+    </ul>
+</section>
+
+<footer>
+    <p>© 2026 ABooks. Built by AB 🚀</p>
+</footer>
+
+<script src="script.js"></script>
+
 </body>
 </html>

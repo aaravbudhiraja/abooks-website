@@ -1,57 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #1e3a8a;
+    --accent: #facc15;
+}
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f7fb;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Category Card Styling */
+.cat-card {
+    cursor: pointer;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    border: 1px solid transparent;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
 }
 
-header {
-    background-color: #1e90ff;
-    color: white;
-    padding: 50px 20px;
+.cat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
 }
 
-button {
-    padding: 12px 25px;
-    font-size: 16px;
-    border: none;
-    border-radius: 25px;
-    background-color: #ffcc00;
-    cursor: pointer;
-    margin-top: 15px;
-}
-
-button:hover {
-    background-color: #ffdb4d;
-}
-
-.categories {
-    padding: 40px 20px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.card {
+/* Product Card Styling */
+.product-card {
     background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-    font-weight: bold;
+    border-radius: 2.5rem;
+    padding: 1.5rem;
+    border: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
 }
 
-.features {
-    background-color: #ffffff;
-    padding: 40px 20px;
+.product-card:hover {
+    border-color: #e2e8f0;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
 }
 
-footer {
-    background-color: #1e90ff;
-    color: white;
-    padding: 20px;
-    margin-top: 30px;
+.product-image-container {
+    height: 240px;
+    background: #f8fafc;
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Cart Toggle Class */
+#cart-sidebar.open {
+    transform: translateX(0);
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Animation for adding to cart */
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.cart-pop {
+    animation: pop 0.3s ease-in-out;
 }
